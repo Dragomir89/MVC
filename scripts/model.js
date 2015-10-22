@@ -63,7 +63,7 @@ app.models = (function() {
         loadModels: function(baseUrl) {
             return new Models(baseUrl);
         }
-    }
+    };
 
 
     function Models(baseUrl) {
