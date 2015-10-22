@@ -2,6 +2,11 @@ var app = app || {};
 
 app.models = (function() {
 
+    function Models(baseUrl) {
+        this.baseUrl = baseUrl;
+        this.students = new Students(this.baseUrl);
+    }
+
 
     var Requester = (function() {
         function makeRequest(method, url, data, success, error) {
@@ -59,6 +64,8 @@ app.models = (function() {
         return Students;
     }());
 
+
+
     return {
         loadModels: function(baseUrl) {
             return new Models(baseUrl);
@@ -66,10 +73,7 @@ app.models = (function() {
     };
 
 
-    function Models(baseUrl) {
-        this.baseUrl = baseUrl;
-        this.students = new Students(this.baseUrl);
-    }
+
 
 
 }());
