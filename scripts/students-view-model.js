@@ -1,6 +1,5 @@
 var app = app || {};
 
-
 app.viewModel = (function(){
 
     function ViewModel(model) {
@@ -15,13 +14,18 @@ app.viewModel = (function(){
 
             var allStudents = data.results;
 
-            for(var i = 0; i < allStudents.length; i++){
+            console.log(allStudents);
 
-                console.log(allStudents[i].name);
+            for(var i = 0; i < allStudents.length; i++){
 
                 var studentWrapper = $('<div>');
                 var name = $('<p>').text(allStudents[i].name);
                 var age = $('<p>').text(allStudents[i].age);
+
+                studentWrapper.addClass('studentWrapper');
+                name.addClass('studentInfo');
+                age.addClass('studentInfo');
+
                 name.appendTo(studentWrapper);
                 age.appendTo(studentWrapper);
 

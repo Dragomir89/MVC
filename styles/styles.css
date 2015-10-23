@@ -1,0 +1,12 @@
+.studentWrapper{
+    border: 1px solid black;
+    display: block;
+    width: 150px;
+
+}
+.studentInfo{
+    display: inline-block;
+    padding: 12px;
+    width: 50%;
+    text-align: center;
+}

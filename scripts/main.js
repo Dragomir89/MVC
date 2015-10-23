@@ -30,7 +30,7 @@ var app = app || {};
 
     console.log(model.students);
 
-    //viewModel.showAllStudents();
+    viewModel.showAllStudents();
 
 
 }());
