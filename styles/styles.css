@@ -1,8 +1,8 @@
 .studentWrapper{
     border: 1px solid black;
-    display: block;
+    display: inline-block;
     width: 150px;
-
+    margin: 20px;
 }
 .studentInfo{
     display: inline-block;

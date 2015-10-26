@@ -11,25 +11,14 @@ app.viewModel = (function(){
 
         this.model.students.getAllStudents(function(data){
 
-
             var allStudents = data.results;
 
             console.log(allStudents);
 
             for(var i = 0; i < allStudents.length; i++){
 
-                var studentWrapper = $('<div>');
-                var name = $('<p>').text(allStudents[i].name);
-                var age = $('<p>').text(allStudents[i].age);
+                $('#students-container').append(addStudentToDom(allStudents[i]));
 
-                studentWrapper.addClass('studentWrapper');
-                name.addClass('studentInfo');
-                age.addClass('studentInfo');
-
-                name.appendTo(studentWrapper);
-                age.appendTo(studentWrapper);
-
-                $('#students-container').append(studentWrapper);
             }
         },function(){
             console.log('ERROR');
@@ -37,6 +26,45 @@ app.viewModel = (function(){
     };
 
 
+    ViewModel.prototype.addStudent = function(){
+
+        var studentName = $('#student-name').val();
+        var studentAge = +$('#student-age').val();
+
+        var student = {
+            name: studentName,
+            age: studentAge
+        };
+
+        this.model.students.postStudent(student,function(data){
+            console.log(data);
+
+            addStudentToDom(student);
+
+        },function(){
+            console.log('I cant add student');
+        })
+
+    };
+
+
+    function addStudentToDom(student){
+        var studentWrapper = $('<div>');
+        var name = $('<p>').text(student.name);
+        var age = $('<p>').text(student.age);
+        var button = $('<button>').text('delete');
+
+        studentWrapper.addClass('studentWrapper');
+        name.addClass('studentInfo');
+        age.addClass('studentInfo');
+        studentWrapper.attr('id', student.objectId);
+
+        name.appendTo(studentWrapper);
+        age.appendTo(studentWrapper);
+        button.appendTo(studentWrapper);
+
+        return studentWrapper;
+    };
 
     return {
         loadViewModel : function(model){
