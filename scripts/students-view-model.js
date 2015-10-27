@@ -4,7 +4,7 @@ app.viewModel = (function(){
 
     function ViewModel(model) {
         this.model = model;
-
+        this.attachEventListeners();
     }
 
     ViewModel.prototype.showAllStudents = function(){
@@ -17,12 +17,17 @@ app.viewModel = (function(){
 
             for(var i = 0; i < allStudents.length; i++){
 
-                $('#students-container').append(addStudentToDom(allStudents[i]));
-
+                addStudentToDom(allStudents[i])
             }
         },function(){
             console.log('ERROR');
         });
+    };
+
+
+    ViewModel.prototype.attachEventListeners = function(){
+
+        $('#add-student').click(this.addStudent);   //когато сложа скоби на addStudent прави заявка ???
     };
 
 
@@ -36,9 +41,10 @@ app.viewModel = (function(){
             age: studentAge
         };
 
+        console.log(student);
+
         this.model.students.postStudent(student,function(data){
             console.log(data);
-
             addStudentToDom(student);
 
         },function(){
@@ -47,8 +53,8 @@ app.viewModel = (function(){
 
     };
 
-
     function addStudentToDom(student){
+
         var studentWrapper = $('<div>');
         var name = $('<p>').text(student.name);
         var age = $('<p>').text(student.age);
@@ -63,7 +69,9 @@ app.viewModel = (function(){
         age.appendTo(studentWrapper);
         button.appendTo(studentWrapper);
 
-        return studentWrapper;
+        $('#students-container').append(studentWrapper);//-----------
+
+        //return studentWrapper;
     };
 
     return {
